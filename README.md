@@ -145,3 +145,37 @@ public:
     }
 };
 ```
+5.用两个栈实现一个队列<br>
+题目描述<br>
+用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。<br>
+解题思路<br>
+1.入队：直接将元素进栈stack1
+2.出队：判断栈stack2是否为空，将栈stack1中的元素pop出，依次进栈stack2。将stack2中的栈顶pop出
+```c++
+class Solution
+{
+public:
+    void push(int node) {
+        stack1.push(node);
+    }
+
+    int pop() {
+        int a;
+        if(stack2.empty()){
+            while(!stack1.empty()){
+                a = stack1.top();
+                stack2.push(a);
+                stack1.pop();
+            }
+        }
+        a = stack2.top();
+        stack2.pop();
+        return a;
+    }
+
+private:
+    stack<int> stack1;
+    stack<int> stack2;
+};
+```
+
