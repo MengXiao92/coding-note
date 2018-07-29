@@ -230,7 +230,7 @@ public:
         int middle = -1;
         if(!rotateArray.empty()){
             while(rotateArray[left] >= rotateArray[right]){
-                if(right - left <= 1){
+                if(right - left <= 1){  //!!
                     middle = right;
                     break;
                 }
