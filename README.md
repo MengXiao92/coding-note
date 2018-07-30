@@ -290,5 +290,25 @@ public:
     }
 };
 ```
+9.变态跳台阶<br>
+题目描述<br>
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。<br>
+```c++
+class Solution {
+public:
+    int jumpFloorII(int number) {
+        int result = 1;
+        if(number == 1) return 1;
+        for(int i = 2; i <= number; i++){
+            result *= 2;
+        }
+        return result;
+
+    }
+};
+```
+10.矩阵覆盖<br>
+题目描述<br>
+我们可以用2\*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2\*1的小矩形无重叠地覆盖一个2\*n的大矩形，总共有多少种方法？
 
 
