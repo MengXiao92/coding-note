@@ -310,5 +310,18 @@ public:
 10.矩阵覆盖<br>
 题目描述<br>
 我们可以用2\*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2\*1的小矩形无重叠地覆盖一个2\*n的大矩形，总共有多少种方法？
-
+11.
+```c++
+class Solution {
+public:
+     int  NumberOf1(int n) {
+         int count = 0;
+         while(n != 0){
+             count++;
+             n = n & (n-1);
+         }
+         return count;
+     }
+};
+```
 
