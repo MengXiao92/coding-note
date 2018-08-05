@@ -519,4 +519,87 @@ public:
 17.树的子结构<br>
 题目描述<br>
 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+```c++
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+        bool result = false;
+        if(pRoot1 != NULL && pRoot2 != NULL){
+            if(pRoot1->val == pRoot2->val){
+                result = DoesTreeAhasTreeB(pRoot1, pRoot2);
+                if(!result)
+                    result = HasSubtree(pRoot1->left, pRoot2);
+                if(!result)
+                    result = HasSubtree(pRoot1->right, pRoot2);
+            }
+        }
+        return result;
+    }
+    // 判断treeB是否是treeA的子数
+    bool DoesTreeAhasTreeB(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+        if(pRoot2 == NULL)
+            return true;   // TreeB遍历结束
+        if(pRoot1 == NULL)
+            return false;
+        if(pRoot1->val != pRoot2->val)
+            return false;
+        return DoesTreeAhasTreeB(pRoot1->left, pRoot2->left) && DoesTreeAhasTreeB(pRoot1->right, pRoot2->right);
+    }
+};
+```
+18.二叉树的镜像<br>
+题目描述<br>
+操作给定的二叉树，将其变换为源二叉树的镜像。
+```
+二叉树的镜像定义：源二叉树 
+    	    8
+    	   /  \
+    	  6   10
+    	 / \  / \
+    	5  7 9 11
+    	镜像二叉树
+    	    8
+    	   /  \
+    	  10   6
+    	 / \  / \
+    	11 9 7  5
 
+```
+```c++
+/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/
+class Solution {
+public:
+    void Mirror(TreeNode *pRoot) {
+        if(pRoot == NULL)
+            return;
+        if(pRoot->left == NULL && pRoot->right == NULL)
+            return;
+        TreeNode *temp = pRoot->left;
+        pRoot->left = pRoot->right;
+        pRoot->right = temp;
+        if(pRoot->left != NULL)
+            Mirror(pRoot->left);
+        if(pRoot->right != NULL)
+            Mirror(pRoot->right);
+    }
+};
+```
