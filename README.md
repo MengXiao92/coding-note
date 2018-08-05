@@ -401,4 +401,34 @@ public:
     }
 };
 ```
+15.反转链表<br>
+题目描述<br>
+输入一个链表，反转链表后，输出新链表的表头。
+```c++
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* ReverseList(ListNode* pHead) {
+        if(pHead == NULL || pHead -> next == NULL)
+            return pHead;
+        ListNode* pListPre = NULL;
+        ListNode* pListNext = NULL;
+        while(pHead != NULL){
+            pListNext = pHead -> next;  // 保存下一个结点
+            pHead -> next = pListPre;   // 链表反转
+            pListPre = pHead;
+            
+            pHead = pListNext;          // 指向已保存的下一个结点
+        }
+        return pListPre;
+    }
+};
+```
 
