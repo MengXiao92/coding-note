@@ -431,4 +431,42 @@ public:
     }
 };
 ```
+16.合并两个排序的链表<br>
+题目描述<br>
+输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
+递归的方法<br>
+```c++
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
+    {
+        if(pHead1 == NULL)
+            return pHead2;
+        if(pHead2 == NULL)
+            return pHead1;
+        ListNode* newHead = NULL;
+        if(pHead1->val <= pHead2->val){
+            newHead = pHead1;
+            newHead->next = Merge(newHead->next, pHead2);
+        }
+        else{
+            newHead = pHead2;
+            newHead->next = Merge(pHead1, newHead->next);
+        }
+        return newHead;
+    }
+};
+```
+非递归方法
+```c++
+
+```
 
