@@ -1,6 +1,28 @@
 Leetcode<br>
 两数之和<br>
-方法1<br>
+方法1:暴力搜索<br>
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> results(2,0);
+        int len = nums.size();
+        //if(len < 2)
+        //    return NULL;
+        for(int i = 0; i < len -1; i++){
+            for(int j = i+1; j < len; j++){
+                if(nums[i] + nums[j] == target){
+                    results[0] = i;
+                    results[1] = j;
+                    //break;
+                }
+                else continue;
+            }
+        }
+        return results;
+    }
+};
+方法2:哈希表<br>
 ```c++
 class Solution {
 public:
@@ -23,3 +45,6 @@ public:
         return results;
     }
 };
+问题:<br>
+1.掌握哈希表的基本语法<br>
+2.哈希表中count和find的区别<br>
