@@ -22,6 +22,7 @@ public:
         return results;
     }
 };
+```
 方法2:哈希表<br>
 ```c++
 class Solution {
@@ -45,6 +46,7 @@ public:
         return results;
     }
 };
+```
 问题:<br>
 1.掌握哈希表的基本语法<br>
 2.哈希表中count和find的区别<br>
