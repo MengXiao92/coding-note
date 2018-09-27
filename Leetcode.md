@@ -133,3 +133,35 @@ public:
     }
 };
 ```
+问题:组合之和II<br>
+```c++
+class Solution {
+public:
+    vector<vector<int>> results;
+    vector<int> temp;
+    void dfs(int index,int sum,int target, vector<int>& c){
+        if(index == c.size()){
+            if(sum == target)
+                results.push_back(temp);
+            return;
+        }
+        int i = index;
+        for(;i+1 < c.size() && c[i+1] == c[index]; i++);
+        int total = i - index + 1;
+        for(int j = 0; j <= total; j++){
+            dfs(index+total,sum,target,c);
+            sum += c[index];
+            temp.push_back(c[index]);
+            if(target < sum)
+                break;
+        }
+        while(temp.size()>0 && temp[temp.size()-1]==c[index])
+            temp.pop_back();
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+        dfs(0,0,target,candidates);
+        return results;
+    }
+};
+```
